@@ -87,4 +87,9 @@ class Absen extends CI_Controller
 
         redirect('profile');
     }
+
+    public function excel()
+    {
+        $this->load->library('excel');
+    }
 }
