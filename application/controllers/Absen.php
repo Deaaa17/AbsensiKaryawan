@@ -90,6 +90,52 @@ class Absen extends CI_Controller
 
     public function excel()
     {
-        $this->load->library('excel');
+        $dari = $this->input->get('dari');
+        $sampai = $this->input->get('sampai');
+        $data["list_absen"] = $this->Absensi->ListAbsensi($dari, $sampai);
+
+        require(APPPATH . 'PHPExcel-1.8/Classes/PHPExcel.php');
+        require(APPPATH . 'PHPExcel-1.8/Classes/PHPExcel/Writer/Excel2007.php');
+
+        $object = new PHPexcel();
+
+        $object->getProperties()->setCreator("Absensi Karyawan");
+        $object->getProperties()->setLastModifiedBy("Absensi Karyawan");
+        $object->getProperties()->setTitle("Data Absensi");
+
+        $object->setActiveSheetIndex(0);
+
+        $object->getActiveSheet()->setCellValue('A1', 'NIP');
+        $object->getActiveSheet()->setCellValue('B1', 'Nama');
+        $object->getActiveSheet()->setCellValue('C1', 'Jabatan');
+        $object->getActiveSheet()->setCellValue('D1', 'Email');
+        $object->getActiveSheet()->setCellValue('E1', 'Waktu Absen');
+        $object->getActiveSheet()->setCellValue('F1', 'Jenis Absen');
+
+        $baris = 2;
+
+        foreach ($data['list_absen'] as $la) {
+            $object->getActiveSheet()->setCellValue('A' . $baris, $la->nip);
+            $object->getActiveSheet()->setCellValue('B' . $baris, $la->nama);
+            $object->getActiveSheet()->setCellValue('C' . $baris, $la->jabatan);
+            $object->getActiveSheet()->setCellValue('D' . $baris, $la->email);
+            $object->getActiveSheet()->setCellValue('E' . $baris, $la->waktu_absen);
+            $object->getActiveSheet()->setCellValue('F' . $baris, $la->jenis_absen);
+
+            $baris++;
+        }
+
+        $filename = "Data Absensi" . '.xlsx';
+
+        $object->getActiveSheet()->setTitle("Data Absensi");
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename=" ' . $filename . ' "');
+        header('Cache-Control: max-age=0');
+
+        $writer = PHPExcel_IOFactory::createWriter($object, 'Excel2007');
+        $writer->save('php://output');
+
+        exit;
     }
 }
