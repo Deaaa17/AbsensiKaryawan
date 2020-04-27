@@ -137,5 +137,7 @@ class Absen extends CI_Controller
         $writer->save('php://output');
 
         exit;
+
+        redirect('karyawan/dataabsen');
     }
 }

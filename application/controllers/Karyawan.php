@@ -98,36 +98,39 @@ class Karyawan extends CI_Controller
         $nip = $this->input->post('nip', true);
         $nama = $this->input->post('nama', true);
         $email = $this->input->post('email', true);
-        $notelp = $this->input->post('notelp', true);
-        $jb = $this->input->post('jabatan', true);
-        $gambar = $_FILES['foto'];
-        if ($gambar == '') {
-        } else {
-            $config['upload_path'] = './assetsassets/foto';
-            $config['allowed_types'] = 'jpg|png|jfif|gif|jpeg';
+        $telp = $this->input->post('notelp', true);
+        $jabatan = $this->input->post('jabatan', true);
 
-            $this->load->library('upload', $config);
-            if (!$this->upload->do_upload('foto')) {
-                echo 'Gagal Upload';
-                die();
-            } else {
-                $gambar = $this->upload->data('file_name');
-            }
+        $config['upload_path'] = './assets/foto';
+        $config['allowed_types'] = 'jpg|png|jfif|gif|jpeg';
+
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('foto')) {
+            $this->upload->data('file_name');
         }
 
-        $data = array(
+        $this->form_validation->set_rules($this->Admin_model->rules());
 
-            'nip'       => $nip,
-            'nama'      => $nama,
-            'email'     => $email,
-            'jabatan'   => $jb,
-            'telp'      => $notelp,
-            'foto'      => $gambar
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('karyawan/tambah');
+        } else {
+            $data = array(
 
-        );
+                'nip'       => $nip,
+                'nama'      => $nama,
+                'email'     => $email,
+                'jabatan'   => $jabatan,
+                'telp'      => $telp,
+                'foto'      => $this->upload->data('file_name')
 
-        $this->Admin_model->save($data);
-        redirect('karyawan/datakaryawan');
+            );
+
+            $this->Admin_model->save($data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Karyawan Berhasil Ditambahkan!</div>');
+            $this->load->view('templates/header');
+            $this->load->view('karyawan/tambah', $data);
+            $this->load->view('templates/footer');
+        }
     }
 
     public function hapus($id)

@@ -13,7 +13,7 @@ class Admin_model extends CI_Model
     public $email;
     public $jabatan;
     public $telp;
-    public $foto = "default.jpg";
+    public $foto = ".jpg";
 
     public function rules()
     {
@@ -39,6 +39,12 @@ class Admin_model extends CI_Model
             [
                 'field' => 'telp',
                 'label' => 'Telp',
+                'rules' => 'required'
+            ],
+
+            [
+                'field' => 'foto',
+                'label' => 'Foto',
                 'rules' => 'required'
             ]
         ];
@@ -68,7 +74,7 @@ class Admin_model extends CI_Model
 
     public function save($data)
     {
-        $this->db->insert('data_karyawan', $data);
+        $this->db->insert('user', $data);
     }
 
     public function update($data, $kondisi)
