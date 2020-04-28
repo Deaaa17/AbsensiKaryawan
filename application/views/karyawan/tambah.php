@@ -26,13 +26,13 @@
                     <label for="notelp">No Telepon</label>
                     <input type="text" class="form-control" id="notelp" name="notelp" autocomplete="off">
                 </div>
+                <div class="form-group">
+                    <label for="foto">Foto</label>
+                    <input type="file" class="form-control-file" id="foto" name="foto">
+                </div>
+                <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+                <?php echo form_close(); ?>
             </div>
-            <div class="form-group">
-                <label for="foto">Foto</label>
-                <input type="file" class="form-control-file" id="foto" name="foto">
-            </div>
-            <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
-            <?php echo form_close(); ?>
         </div>
     </div>
 </div>

@@ -60,18 +60,38 @@
                         }
                     </script>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-tools">
+                <div class="card-body">
+                    <div class="card-title mr-5 ">
+                        <h3><b>My Profile</b></h3>
+                    </div>
+                    <div class="card-tools ml-5">
                         <a href="<?= base_url(); ?>karyawan/editprofile" class="btn btn-primary">Edit Profile</button></a>
                     </div>
-                    <div>
-                        <h3><b>My Profile</b></h3>
+                    <div class="row ml-5 mt-4">
+                        <div class="col-md-4 mt-3">
+                            <img src="<?= base_url(); ?>assets/img/profile/interiordesain.jpg" alt="Profil">
+                        </div>
+                        <br>
+                        <div class="col-md-8 mt-2">
+                            <dl>
+                                <dt>NIP</dt>
+                                <dd><?= $user['nip'] ?></dd>
+                                <dt>Nama</dt>
+                                <dd><?= $user['nama'] ?></dd>
+                                <dt>Jabatan</dt>
+                                <dd><?= $user['jabatan'] ?></dd>
+                                <dt>Tempat, Tanggal Lahir</dt>
+                                <dd><?= $user['ttl'] ?></dd>
+                                <dt>Jenis Kelamin</dt>
+                                <dd><?= $user['kelamin'] ?></dd>
+                                <dt>Alamat</dt>
+                                <dd><?= $user['alamat'] ?></dd>
+                                <dt>No. Telepon</dt>
+                                <dd><?= $user['telp'] ?></dd>
+                                <dt>Email</dt>
+                                <dd><?= $user['email'] ?></dd>
+                            </dl>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -158,34 +178,34 @@
             </div>
         </div>
     </div>
-<?php endif; ?>
 
-<div class="card">
-    <div class="row ml-5 mt-4">
-        <div class="col-md-4 mt-3">
-            <img src="<?= base_url(); ?>assets/img/profile/interiordesain.jpg" alt="Profil">
-        </div>
-        <br>
-        <div class="col-md-8 mt-2">
-            <dl>
-                <dt>NIP</dt>
-                <dd><?= $user['nip'] ?></dd>
-                <dt>Nama</dt>
-                <dd><?= $user['nama'] ?></dd>
-                <dt>Jabatan</dt>
-                <dd><?= $user['jabatan'] ?></dd>
-                <dt>Tempat, Tanggal Lahir</dt>
-                <dd><?= $user['ttl'] ?></dd>
-                <dt>Jenis Kelamin</dt>
-                <dd><?= $user['kelamin'] ?></dd>
-                <dt>Alamat</dt>
-                <dd><?= $user['alamat'] ?></dd>
-                <dt>No. Telepon</dt>
-                <dd><?= $user['telp'] ?></dd>
-                <dt>Email</dt>
-                <dd><?= $user['email'] ?></dd>
-            </dl>
-        </div>
 
+    <div class="card">
+        <div class="row ml-5 mt-4">
+            <div class="col-md-4 mt-3">
+                <img src="<?= base_url(); ?>assets/img/profile/interiordesain.jpg" alt="Profil">
+            </div>
+            <br>
+            <div class="col-md-8 mt-2">
+                <dl>
+                    <dt>NIP</dt>
+                    <dd><?= $user['nip'] ?></dd>
+                    <dt>Nama</dt>
+                    <dd><?= $user['nama'] ?></dd>
+                    <dt>Jabatan</dt>
+                    <dd><?= $user['jabatan'] ?></dd>
+                    <dt>Tempat, Tanggal Lahir</dt>
+                    <dd><?= $user['ttl'] ?></dd>
+                    <dt>Jenis Kelamin</dt>
+                    <dd><?= $user['kelamin'] ?></dd>
+                    <dt>Alamat</dt>
+                    <dd><?= $user['alamat'] ?></dd>
+                    <dt>No. Telepon</dt>
+                    <dd><?= $user['telp'] ?></dd>
+                    <dt>Email</dt>
+                    <dd><?= $user['email'] ?></dd>
+                </dl>
+            </div>
+        </div>
     </div>
-</div>
+<?php endif; ?>

@@ -1,5 +1,5 @@
 <?= $this->session->flashdata('message'); ?>
-<button class="btn btn-primary mb-3 mt-3 ml-2" data-toggle="modal" data-target="#tambahdata">Tambah Data Karyawan</button>
+<a href="<?= base_url(); ?>karyawan/insertdata/" class="btn btn-primary mb-3">Tambah Data Karyawan</button></a>
 <div class="row">
     <div class="col-12">
         <div class="card">

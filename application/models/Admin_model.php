@@ -15,6 +15,7 @@ class Admin_model extends CI_Model
     public $telp;
     public $foto = ".jpg";
 
+    // validasi
     public function rules()
     {
         return [

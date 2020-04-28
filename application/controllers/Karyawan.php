@@ -127,10 +127,11 @@ class Karyawan extends CI_Controller
 
             $this->Admin_model->save($data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Karyawan Berhasil Ditambahkan!</div>');
-            $this->load->view('templates/header');
-            $this->load->view('karyawan/tambah', $data);
-            $this->load->view('templates/footer');
         }
+
+        $this->load->view('templates/header');
+        $this->load->view('karyawan/tambah');
+        $this->load->view('templates/footer');
     }
 
     public function hapus($id)
