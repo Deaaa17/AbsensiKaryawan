@@ -1,5 +1,11 @@
 <?php defined('BASEPATH') or exit('NO DIRECT Scrpt Access Allowed');
 
+require('Users/deama/vendor/autoload.php');
+
+use PhpOffice\PhpSpreadsheet\Helper\Sample;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+
 class Absen extends CI_Controller
 {
     public function __construct()
@@ -94,8 +100,8 @@ class Absen extends CI_Controller
         $sampai = $this->input->get('sampai');
         $data["list_absen"] = $this->Absensi->ListAbsensi($dari, $sampai);
 
-        require(APPPATH . 'PHPExcel-1.8/Classes/PHPExcel.php');
-        require(APPPATH . 'PHPExcel-1.8/Classes/PHPExcel/Writer/Excel2007.php');
+        // require(APPPATH . 'PHPExcel-1.8/Classes/PHPExcel.php');
+        // require(APPPATH . 'PHPExcel-1.8/Classes/PHPExcel/Writer/Excel2007.php');
 
         $object = new PHPexcel();
 
@@ -133,7 +139,7 @@ class Absen extends CI_Controller
         header('Content-Disposition: attachment;filename=" ' . $filename . ' "');
         header('Cache-Control: max-age=0');
 
-        $writer = PHPExcel_IOFactory::createWriter($object, 'Excel2007');
+        $writer = PHPExcel_IOFactory::createWriter($object, 'Xlsx');
         $writer->save('php://output');
 
         exit;

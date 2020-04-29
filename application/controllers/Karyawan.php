@@ -95,6 +95,20 @@ class Karyawan extends CI_Controller
 
     public function insertdata()
     {
+        $role_id = $this->session->userdata('role_id');
+        checkLogin($role_id);
+
+        $menu['title'] = 'My Profile';
+        $menu['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $queryMenu = "SELECT user_menu.id, user_menu.menu
+                        FROM user_menu JOIN user_access_menu 
+                          ON user_menu.id = user_access_menu.menu_id
+                        WHERE user_access_menu.role_id = $role_id
+                    ORDER BY user_menu.id ASC
+         ";
+        $menu['menu'] = $this->db->query($queryMenu)->result_array();
+
         $nip = $this->input->post('nip', true);
         $nama = $this->input->post('nama', true);
         $email = $this->input->post('email', true);
@@ -129,7 +143,7 @@ class Karyawan extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Karyawan Berhasil Ditambahkan!</div>');
         }
 
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', $menu);
         $this->load->view('karyawan/tambah');
         $this->load->view('templates/footer');
     }
@@ -157,7 +171,6 @@ class Karyawan extends CI_Controller
         $menu['menu'] = $this->db->query($queryMenu)->result_array();
 
         $data['karyawan'] = $this->Admin_model->getById($id);
-
 
         $this->load->view('templates/header', $menu);
         $this->load->view('karyawan/ubah', $data);
