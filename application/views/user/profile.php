@@ -64,15 +64,15 @@
                     <div class="card-title mr-5 ">
                         <h3><b>My Profile</b></h3>
                     </div>
-                    <div class="card-tools ml-5">
+                    <div class="card-tools ml-auto">
                         <a href="<?= base_url(); ?>karyawan/editprofile" class="btn btn-primary">Edit Profile</button></a>
                     </div>
                     <div class="row ml-5 mt-4">
                         <div class="col-md-4 mt-3">
-                            <img src="<?= base_url(); ?>assets/img/profile/interiordesain.jpg" alt="Profil">
+                            <img src="<?= base_url('assets/foto/') . $user['foto']; ?>" alt="Profil" style="max-width: 300px; max-height: 500px;">
                         </div>
                         <br>
-                        <div class="col-md-8 mt-2">
+                        <div class="col-md-8 mt-2 ml-auto">
                             <dl>
                                 <dt>NIP</dt>
                                 <dd><?= $user['nip'] ?></dd>
@@ -160,7 +160,7 @@
                         }
                     </script>
 
-                    <div class="card-tools justify-content-center mr-3">
+                    <div class="card-tools ml-auto mr-3">
                         <a href="<?php echo base_url("absen/masuk") ?>" class="btn btn-warning">MASUK</a>
                         <a href="<?php echo base_url("absen/keluar") ?>" class="btn btn-info">PULANG</a>
                     </div>
@@ -183,7 +183,7 @@
     <div class="card">
         <div class="row ml-5 mt-4">
             <div class="col-md-4 mt-3">
-                <img src="<?= base_url(); ?>assets/img/profile/interiordesain.jpg" alt="Profil">
+                <img src="<?= base_url('assets/foto/') . $user['foto']; ?>" alt="Profil" style="max-width: 300px; max-height: 500px;">
             </div>
             <br>
             <div class="col-md-8 mt-2">

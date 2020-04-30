@@ -30,8 +30,14 @@
                     <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
                 </li>
             </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#">
+                        <p><b>Welcome!</b> <?= $user['nama']; ?></p>
+                    </a>
+                </li>
+            </ul>
         </nav>
-
 
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -46,7 +52,7 @@
                 <!-- Sidebar user (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="<?= base_url(); ?>assets/img/profile/avatar-icon.jpg" class="img-circle elevation-2" alt="User Image">
+                        <img src="<?= base_url('assets/foto/') . $user['foto']; ?>" class="img-circle elevation-2" alt="User Image">
                         <div class="info">
                             <a href="#" class="d-block"><?= $user['nama']; ?></a>
                         </div>

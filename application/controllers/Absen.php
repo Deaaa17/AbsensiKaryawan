@@ -1,10 +1,9 @@
 <?php defined('BASEPATH') or exit('NO DIRECT Scrpt Access Allowed');
 
-require('Users/deama/vendor/autoload.php');
+require FCPATH . 'vendor/vendor/autoload.php';
 
-use PhpOffice\PhpSpreadsheet\Helper\Sample;
-use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class Absen extends CI_Controller
 {
@@ -100,10 +99,7 @@ class Absen extends CI_Controller
         $sampai = $this->input->get('sampai');
         $data["list_absen"] = $this->Absensi->ListAbsensi($dari, $sampai);
 
-        // require(APPPATH . 'PHPExcel-1.8/Classes/PHPExcel.php');
-        // require(APPPATH . 'PHPExcel-1.8/Classes/PHPExcel/Writer/Excel2007.php');
-
-        $object = new PHPexcel();
+        $object = new Spreadsheet();
 
         $object->getProperties()->setCreator("Absensi Karyawan");
         $object->getProperties()->setLastModifiedBy("Absensi Karyawan");
@@ -131,7 +127,7 @@ class Absen extends CI_Controller
             $baris++;
         }
 
-        $filename = "Data Absensi" . '.xlsx';
+        $filename = "Data Absensi";
 
         $object->getActiveSheet()->setTitle("Data Absensi");
 
@@ -139,7 +135,7 @@ class Absen extends CI_Controller
         header('Content-Disposition: attachment;filename=" ' . $filename . ' "');
         header('Cache-Control: max-age=0');
 
-        $writer = PHPExcel_IOFactory::createWriter($object, 'Xlsx');
+        $writer = IOFactory::createWriter($object, 'Xlsx');
         $writer->save('php://output');
 
         exit;
