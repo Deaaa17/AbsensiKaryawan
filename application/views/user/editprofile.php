@@ -10,35 +10,35 @@
                 <input type="hidden" name="fotolama" value="<?= $karyawan->foto; ?>">
                 <div class="form-group">
                     <label for="NIP">NIP</label>
-                    <input type="text" class="form-control" id="NIP" name="nip" value="<?= $karyawan->nip; ?>" disabled>
+                    <input type="text" class="form-control" id="NIP" name="nip" value="<?= $profile->nip; ?>" disabled>
                 </div>
                 <div class="form-group">
                     <label for="Nama">Nama</label>
-                    <input type="text" class="form-control" id="Nama" name="nama" value="<?= $karyawan->nama; ?>">
+                    <input type="text" class="form-control" id="Nama" name="nama" value="<?= $profile->nama; ?>">
                 </div>
                 <div class="form-group">
                     <label for="jabatan">Jabatan</label>
-                    <input type="text" class="form-control" id="jabatan" name="jabatan" value="<?= $karyawan->jabatan; ?>">
+                    <input type="text" class="form-control" id="jabatan" name="jabatan" value="<?= $profile->jb; ?>">
                 </div>
                 <div class="form-group">
                     <label for="jabatan">Tempat, Tanggal Lahir</label>
-                    <input type="text" class="form-control" id="ttl" name="ttl" value="<?= $karyawan->ttl; ?>">
+                    <input type="text" class="form-control" id="ttl" name="ttl" value="<?= $profile->ttl; ?>">
                 </div>
                 <div class="form-group">
                     <label for="jabatan">Jenis Kelamin</label>
-                    <input type="text" class="form-control" id="kelamin" name="kelamin" value="<?= $karyawan->kelamin; ?>">
+                    <input type="text" class="form-control" id="kelamin" name="kelamin" value="<?= $profile->klmn; ?>">
                 </div>
                 <div class="form-group">
                     <label for="jabatan">Alamat</label>
-                    <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $karyawan->alamat; ?>">
+                    <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $profile->alm; ?>">
                 </div>
                 <div class="form-group">
                     <label for="Nama">Email</label>
-                    <input type="text" class="form-control" id="Email" name="email" value="<?= $karyawan->email; ?>">
+                    <input type="text" class="form-control" id="Email" name="email" value="<?= $profile->email; ?>">
                 </div>
                 <div class="form-group">
                     <label for="notelp">No Telepon</label>
-                    <input type="text" class="form-control" id="notelp" name="notelp" value="<?= $karyawan->telp ?>">
+                    <input type="text" class="form-control" id="notelp" name="notelp" value="<?= $profile->notelp ?>">
                 </div>
                 <!-- <div class="form-group">
                     <label for="foto">Example file input</label>

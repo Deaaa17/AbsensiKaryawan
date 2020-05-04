@@ -39,50 +39,26 @@ class Profile extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function editprofile()
+    public function editprofile($id)
     {
-        $nip = $this->input->post('nip', true);
-        $nama = $this->input->post('nama', true);
-        $jb = $this->input->post('jabatan', true);
-        $ttl = $this->input->post('ttl', true);
-        $klmn = $this->input->post('kelamin', true);
-        $alm = $this->input->post('alamat', true);
-        $email = $this->input->post('email', true);
-        $notelp = $this->input->post('notelp', true);
-        // $gambar = $_FILES['foto'];
-        // if ($gambar == '') {
-        // } else {
-        //     $config['upload_path'] = './assets/foto';
-        //     $config['allowed_types'] = 'jpg|png|jfif|gif|jpeg';
+        $role_id = $this->session->userdata('role_id');
+        checkLogin($role_id);
 
-        //     $this->load->library('upload', $config);
-        //     if (!$this->upload->do_upload('foto')) {
-        //         echo 'Gagal Upload';
-        //         die();
-        //     } else {
-        //         $gambar = $this->upload->data('file_name');
-        //     }
-        // }
+        $menu['title'] = 'Edit Profile';
+        $menu['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data = array(
+        $queryMenu = "SELECT user_menu.id, user_menu.menu
+                        FROM user_menu JOIN user_access_menu 
+                            ON user_menu.id = user_access_menu.menu_id
+                        WHERE user_access_menu.role_id = $role_id
+                    ORDER BY user_menu.id ASC
+        ";
+        $menu['menu'] = $this->db->query($queryMenu)->result_array();
 
-            'nip'      => $nip,
-            'nama'     => $nama,
-            'jabatan'  => $jb,
-            'ttl'      => $ttl,
-            'kelamin'  => $klmn,
-            'alamat'   => $alm,
-            'ttl'      => $ttl,
-            'email'    => $email,
-            'telp'     => $notelp,
-            // 'foto'       => $gambar
-        );
-        // $path = './assets/foto/';
-        // @unlink($path . $this->input->post('fotolama'));
-        // $id = $this->input->post('idkaryawan');
+        $data['profile'] = $this->Admin_model->getById($id);
 
-        $kondisi = $this->db->where('id');
-        $this->Admin_model->update($data, $kondisi);
-        redirect('user/editprofile');
+        $this->load->view('templates/header', $menu);
+        $this->load->view('user/editprofile', $data);
+        $this->load->view('templates/footer');
     }
 }

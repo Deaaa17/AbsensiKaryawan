@@ -65,7 +65,7 @@
                         <h3><b>My Profile</b></h3>
                     </div>
                     <div class="card-tools ml-auto">
-                        <a href="<?= base_url(); ?>karyawan/editprofile" class="btn btn-primary">Edit Profile</button></a>
+                        <a href="<?= base_url(); ?>Profile/editprofile" class="btn btn-primary">Edit Profile</button></a>
                     </div>
                     <div class="row ml-5 mt-4">
                         <div class="col-md-4 mt-3">
@@ -173,7 +173,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <a href="<?= base_url(); ?>karyawan/editprofile" class="btn btn-primary">Edit Profile</button></a>
+                    <a href="<?= base_url(); ?>Profile/editprofile" class="btn btn-primary">Edit Profile</button></a>
                 </div>
             </div>
         </div>
