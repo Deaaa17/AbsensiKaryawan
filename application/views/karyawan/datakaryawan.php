@@ -1,10 +1,10 @@
 <?= $this->session->flashdata('message'); ?>
-<a href="<?= base_url(); ?>karyawan/insertdata/" class="btn btn-primary mb-3">Tambah Data Karyawan</button></a>
+<a href="<?= base_url(); ?>karyawan/insertdata/" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Tambah Data Karyawan</button></a>
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title"></h3>
+                <a href="<?= base_url(); ?>karyawan/excel/" class="btn btn-success"><i class="fas fa-file-excel"></i> Export Excel</button></a>
                 <div class="card-tools">
                     <?php $attributes = array('class' => 'input-group input-group-sm', 'method' => 'get'); ?>
                     <?php echo form_open("karyawan", $attributes); ?>

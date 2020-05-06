@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title></title>
-</head>
-
-<body>
+<!doctype html>
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head><body>
 
     <h3 style="text-align: center">DATA ABSENSI KARYAWAN</h3>
     <br>
@@ -18,7 +14,6 @@
             <th>Waktu Absen</th>
             <th>Jenis Absen</th>
         </tr>
-
         <?php
         $no = 1;
         foreach ($list_absen as $la) : ?>
@@ -35,6 +30,4 @@
         <?php endforeach; ?>
     </table>
 
-</body>
-
-</html>
+</body></html>

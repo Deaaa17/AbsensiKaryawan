@@ -1,5 +1,10 @@
 <?php defined('BASEPATH') or exit('NO DIRECT Scrpt Access Allowed');
 
+require FCPATH . 'vendor/vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+
 class Karyawan extends CI_Controller
 {
     public function __construct()
@@ -244,6 +249,53 @@ class Karyawan extends CI_Controller
         $this->load->view('karyawan/datakaryawan', $data);
         $this->load->view('templates/footer');
     }
+
+    public function excel()
+    {
+        $data["list_karyawan"] = $this->Admin_model->getAll();
+
+        $object = new Spreadsheet();
+
+        $object->getProperties()->setCreator("Data Karyawan");
+        $object->getProperties()->setLastModifiedBy("Data Karyawan");
+        $object->getProperties()->setTitle("Data Karyawan");
+
+        $object->setActiveSheetIndex(0);
+
+        $object->getActiveSheet()->setCellValue('A1', 'NIP');
+        $object->getActiveSheet()->setCellValue('B1', 'Nama');
+        $object->getActiveSheet()->setCellValue('D1', 'Email');
+        $object->getActiveSheet()->setCellValue('C1', 'Jabatan');
+        $object->getActiveSheet()->setCellValue('F1', 'No. Telp');
+
+        $baris = 2;
+
+        foreach ($data['list_karyawan'] as $lk) {
+            $object->getActiveSheet()->setCellValue('A' . $baris, $lk->nip);
+            $object->getActiveSheet()->setCellValue('B' . $baris, $lk->nama);
+            $object->getActiveSheet()->setCellValue('D' . $baris, $lk->email);
+            $object->getActiveSheet()->setCellValue('C' . $baris, $lk->jabatan);
+            $object->getActiveSheet()->setCellValue('F' . $baris, $lk->telp);
+
+            $baris++;
+        }
+
+        $filename = "Data Karyawan";
+
+        $object->getActiveSheet()->setTitle("Data Karyawan");
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename=" ' . $filename . ' "');
+        header('Cache-Control: max-age=0');
+
+        $writer = IOFactory::createWriter($object, 'Xlsx');
+        $writer->save('php://output');
+
+        exit;
+
+        redirect('karyawan/datakaryawan');
+    }
+
 
     // public function detail($id)
     // {

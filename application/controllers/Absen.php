@@ -161,5 +161,7 @@ class Absen extends CI_Controller
         $this->dompdf->load_html($html);
         $this->dompdf->render();
         $this->dompdf->stream("Laporan Data Absensi", array('Attachment' => 0));
+
+        redirect('karyawan/dataabsen');
     }
 }
