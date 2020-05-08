@@ -1,7 +1,7 @@
 <body class="hold-transition login-page">
 	<div class="login-box">
 		<div class="login-logo">
-			<a href="index2.html"><b>Absensi</b>Karyawan</a>
+			<a href="#"><b>Absensi</b>Karyawan</a>
 		</div>
 		<!-- /.login-logo -->
 		<div class="card">
@@ -10,7 +10,7 @@
 
 				<?= $this->session->flashdata('message'); ?>
 
-				<form action="<?= base_url('auth'); ?>" method="post" class=user>
+				<form action="<?= base_url('auth'); ?>" method="post" class="user mb-2">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" id="email" name="email" placeholder="Email" value="<?= set_value('email'); ?>" autocomplete="off">
 						<div class="input-group-append">
@@ -40,10 +40,12 @@
 
 				<!-- /.social-auth-links -->
 
-				<p class="mb-0">
+				<div class="text-center">
+					<a href="<?= base_url('auth/forgot'); ?>" class="text-center">Lupa Password?</a>
+				</div>
+				<div class="text-center">
 					<a href="<?= base_url('auth/regis'); ?>" class="text-center">Belum punya akun?Buat akun</a>
-				</p>
-
+				</div>
 			</div>
 			<!-- /.login-card-body -->
 		</div>

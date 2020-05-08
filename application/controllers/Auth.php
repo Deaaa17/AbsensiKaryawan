@@ -97,4 +97,55 @@ class Auth extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Logout berhasil!</div>');
         redirect('auth');
     }
+
+    private function _sendEmail()
+    {
+        $config = [
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_user' => 'deamfaradilah17@gmail.com',
+            'smtp_pass' => '123456789',
+            'smtp_port' => 465,
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'newline' => "\r\n"
+        ];
+
+        $this->load->library('email', $config);
+        $this->email->from('deamfaradilah17@gmail.com', 'Dhea Maulida');
+        $this->email->to('deamaulida03@gmail.com');
+        $this->email->suvject('Testing');
+    }
+
+    public function forgot()
+    {
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Lupa Password';
+            $this->load->view('templates/auth_header', $data);
+            $this->load->view('auth/lupapw');
+            $this->load->view('templates/auth_footer');
+        } else {
+            $email = $this->input->post('email');
+            $user = $this->db->get_where('user', ['email' => $email, 'is_active' => 1])->row_array();
+
+            if ($user) {
+                $token = base64_encode(random_bytes(32));
+                $user_token = [
+                    'email' => $email,
+                    'token' => $token,
+                    'date_created' => time()
+                ];
+
+                $this->db->insert('user_token', $user_token);
+                $this->_sendEmail($token, 'forgot');
+
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Cek Email Anda Untuk Setel Ulang Password</div>');
+                redirect('auth/forgot');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email Belum Terdaftar atau Belum Teraktivasi</div>');
+                redirect('auth/forgot');
+            }
+        }
+    }
 }
