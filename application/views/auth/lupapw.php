@@ -6,7 +6,7 @@
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <h5 class="login-box-msg">Apakah Anda Lupa Password ?</h5>
+                <h5 class="login-box-msg">Lupa Kata Sandi</h5>
 
                 <?= $this->session->flashdata('message'); ?>
 
@@ -23,7 +23,7 @@
                     <div class="row">
                         <!-- /.col -->
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-block">Reset Password</button>
+                            <button type="submit" class="btn btn-primary btn-block">Ubah Sandi</button>
                         </div>
                         <!-- /.col -->
                     </div>

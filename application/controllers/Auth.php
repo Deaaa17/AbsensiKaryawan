@@ -98,7 +98,7 @@ class Auth extends CI_Controller
         redirect('auth');
     }
 
-    private function _sendEmail()
+    private function _sendEmail($token, $type)
     {
         $config = [
             'protocol' => 'smtp',
@@ -111,10 +111,62 @@ class Auth extends CI_Controller
             'newline' => "\r\n"
         ];
 
+        $this->email->initialize($config);
+
         $this->load->library('email', $config);
         $this->email->from('deamfaradilah17@gmail.com', 'Dhea Maulida');
-        $this->email->to('deamaulida03@gmail.com');
-        $this->email->suvject('Testing');
+        $this->email->to($this->input->post('email'));
+
+        if ($type == 'verify') {
+            $this->email->subject('Verifikasi Akun');
+            $this->email->message('Klik link ini untuk mengubah kata sandi : <a href="' . base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Aktivasi</a>');
+        } else if ($type == 'forgot') {
+            $this->email->subject('Atur Ulang Kata Sandi');
+            $this->email->message('Klik link ini untuk mengatur ulang kata sandi : <a href="' . base_url() . 'auth/resetsandi?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Atur Ulang Kata Sandi</a>');
+        }
+
+        if ($this->email->send()) {
+            return true;
+        } else {
+            echo $this->email->print_debugger();
+            die;
+        }
+    }
+
+    public function verify()
+    {
+        $email = $this->input->get('email');
+        $email = $this->input->get('token');
+
+        $user = $this->db->get_where('user', ['email' => $email])->row_array();
+
+        if ($user) {
+            $user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
+            if ($user_token) {
+                if (time() - $user_token['date_created'] < (60 * 60 * 24)) {
+                    $this->db->set('is_active', 1);
+                    $this->db->where('email', $email);
+                    $this->db->update('user');
+
+                    $this->db->delete('user_token', ['email' => $email]);
+                    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">' . $email . ' Sudah Teraktivasi.</div>');
+                    redirect('auth');
+                } else {
+
+                    $this->db->delete('user', ['email' => $email]);
+                    $this->db->delete('user_token', ['email' => $email]);
+
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Token Kadaluarsa.</div>');
+                    redirect('auth');
+                }
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Token Salah.</div>');
+                redirect('auth');
+            }
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal Aktivasi! Email Salah.</div>');
+            redirect('auth');
+        }
     }
 
     public function forgot()
@@ -146,6 +198,20 @@ class Auth extends CI_Controller
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email Belum Terdaftar atau Belum Teraktivasi</div>');
                 redirect('auth/forgot');
             }
+        }
+    }
+
+    public function resetsandi()
+    {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $user = $this->db->get_where('user', ['email' => $email])->row_array();
+
+        if ($user) {
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email Salah</div>');
+            redirect('auth/forgot');
         }
     }
 }
