@@ -133,47 +133,11 @@ class Auth extends CI_Controller
         }
     }
 
-    public function verify()
-    {
-        $email = $this->input->get('email');
-        $email = $this->input->get('token');
-
-        $user = $this->db->get_where('user', ['email' => $email])->row_array();
-
-        if ($user) {
-            $user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
-            if ($user_token) {
-                if (time() - $user_token['date_created'] < (60 * 60 * 24)) {
-                    $this->db->set('is_active', 1);
-                    $this->db->where('email', $email);
-                    $this->db->update('user');
-
-                    $this->db->delete('user_token', ['email' => $email]);
-                    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">' . $email . ' Sudah Teraktivasi.</div>');
-                    redirect('auth');
-                } else {
-
-                    $this->db->delete('user', ['email' => $email]);
-                    $this->db->delete('user_token', ['email' => $email]);
-
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Token Kadaluarsa.</div>');
-                    redirect('auth');
-                }
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Token Salah.</div>');
-                redirect('auth');
-            }
-        } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal Aktivasi! Email Salah.</div>');
-            redirect('auth');
-        }
-    }
-
     public function forgot()
     {
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Lupa Password';
+            $data['title'] = 'Lupa Kata Sandi';
             $this->load->view('templates/auth_header', $data);
             $this->load->view('auth/lupapw');
             $this->load->view('templates/auth_footer');
@@ -209,9 +173,46 @@ class Auth extends CI_Controller
         $user = $this->db->get_where('user', ['email' => $email])->row_array();
 
         if ($user) {
+            $user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
+
+            if ($user_token) {
+                $this->session->set_userdata('reset_email', $email);
+                $this->ubahKatasandi();
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Token Salah</div>');
+                redirect('auth');
+            }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email Salah</div>');
-            redirect('auth/forgot');
+            redirect('auth');
+        }
+    }
+
+    public function ubahKatasandi()
+    {
+        if (!$this->session->userdata('reset_email')) {
+            redirect('auth');
+        }
+
+        $this->form_validation->set_rules('password1', 'Password', 'trim|required|min_length[3]|matches[password2]');
+        $this->form_validation->set_rules('password2', 'Repeat Password', 'trim|required|min_length[3]|matches[password1]');
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Ubah Kata Sandi';
+            $this->load->view('templates/auth_header', $data);
+            $this->load->view('auth/ubahSandi');
+            $this->load->view('templates/auth_footer');
+        } else {
+            $password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
+            $email = $this->session->userdata('reset_email');
+
+            $this->db->set('passsword', $password);
+            $this->db->where('email', $email);
+            $this->db->update('user');
+
+            $this->session->unset_userdata('reset_email');
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Kata Sandi Telah diubah! Silahkan Masuk.</div>');
+            redirect('auth');
         }
     }
 }

@@ -23,7 +23,7 @@
                     <div class="row">
                         <!-- /.col -->
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-block">Ubah Sandi</button>
+                            <button type="submit" class="btn btn-primary btn-block">Atur Ulang Kata Sandi</button>
                         </div>
                         <!-- /.col -->
                     </div>

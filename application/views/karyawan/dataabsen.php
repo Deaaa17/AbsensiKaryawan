@@ -2,6 +2,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
+                <a href="<?= base_url(); ?>absen/print/" class="btn btn-primary"><i class="fas fa-print"></i> Print</button></a>
                 <a href="<?= base_url(); ?>absen/excel/" class="btn btn-success"><i class="fas fa-file-excel"></i> Export Excel</button></a>
                 <a href="<?= base_url(); ?>absen/pdf/" class="btn btn-warning" style="color:white;"><i class="fas fa-file-pdf"></i> Export PDF</button></a>
                 <h3 class="card-title"></h3>
