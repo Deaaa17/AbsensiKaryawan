@@ -15,7 +15,7 @@
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="<?= base_url('assets/') ?>dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Arial:300,400,400i,700" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 
@@ -33,14 +33,14 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#">
-                        <p><b>Welcome!</b> <?= $user['nama']; ?></p>
+                        <p><b>Selamat Datang!</b> <?= $user['nama']; ?></p>
                     </a>
                 </li>
             </ul>
         </nav>
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-dark-primary">
             <!-- Brand Logo -->
             <a href="#" class="brand-link">
                 <i class="fas fa-business-time"></i>
@@ -50,62 +50,62 @@
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="<?= base_url('assets/foto/') . $user['foto']; ?>" class="img-circle elevation-2" alt="User Image">
-                        <div class="info">
-                            <a href="#" class="d-block"><?= $user['nama']; ?></a>
-                        </div>
+                <div class="user-panel mt-3 pb-3 mb-3">
+                    <div class="pull-left image">
+                        <img src="<?= base_url('assets/foto/') . $user['foto']; ?>" class="img-circle" alt="User Image">
                     </div>
+                    <div class="pull-left info">
+                        <a href="<?= base_url(); ?>profile" class="d-block"><?= $user['nama']; ?></a>
+                    </div>
+                </div>
 
-                    <!-- Sidebar Menu -->
-                    <nav class="mt-2">
-                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                            <?php if ($user['role_id'] == 1) : ?>
-                                <li class="nav-item">
-                                    <a href="<?= base_url(); ?>profile" class="nav-link">
-                                        <i class="fas fa-user"></i>
-                                        <p>
-                                            Profile
-                                        </p>
-                                    </a>
-                                </li>
-                            <?php endif; ?>
-                            <?php if ($user['role_id'] == 1) : ?>
-                                <li class="nav-item">
-                                    <a href="<?= base_url(); ?>karyawan/datakaryawan" class="nav-link">
-                                        <i class="fas fa-address-book"></i>
-                                        <p>
-                                            Data Karyawan
-                                        </p>
-                                    </a>
-                                </li>
-                            <?php endif; ?>
-                            <?php if ($user['role_id'] == 1) : ?>
-                                <li class="nav-item">
-                                    <a href="<?= base_url(); ?>absen" class="nav-link">
-                                        <i class="fas fa-clipboard-check"></i>
-                                        <p>
-                                            Data Absensi
-                                        </p>
-                                    </a>
-                                </li>
-                            <?php endif; ?>
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <?php if ($user['role_id'] == 1) : ?>
                             <li class="nav-item">
-                                <a href="<?= base_url('auth/logout'); ?>" class="nav-link">
-                                    <i class="fas fa-sign-out-alt"></i>
+                                <a href="<?= base_url(); ?>profile" class="nav-link">
+                                    <i class="fas fa-user"></i>
                                     <p>
-                                        Keluar
+                                        Profile
                                     </p>
                                 </a>
                             </li>
-                        </ul>
-                    </nav>
-                    <!-- /.sidebar-menu -->
-                </div>
-                <!-- /.sidebar -->
+                        <?php endif; ?>
+                        <?php if ($user['role_id'] == 1) : ?>
+                            <li class="nav-item">
+                                <a href="<?= base_url(); ?>karyawan/datakaryawan" class="nav-link">
+                                    <i class="fas fa-address-book"></i>
+                                    <p>
+                                        Data Karyawan
+                                    </p>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($user['role_id'] == 1) : ?>
+                            <li class="nav-item">
+                                <a href="<?= base_url(); ?>absen" class="nav-link">
+                                    <i class="fas fa-clipboard-check"></i>
+                                    <p>
+                                        Data Absensi
+                                    </p>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                        <li class="nav-item">
+                            <a href="<?= base_url('auth/logout'); ?>" class="nav-link">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <p>
+                                    Keluar
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
         </aside>
-        </nav>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">

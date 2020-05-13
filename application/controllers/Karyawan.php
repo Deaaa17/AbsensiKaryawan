@@ -103,7 +103,7 @@ class Karyawan extends CI_Controller
         $role_id = $this->session->userdata('role_id');
         checkLogin($role_id);
 
-        $menu['title'] = 'My Profile';
+        $menu['title'] = 'Tambah Karyawan';
         $menu['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $queryMenu = "SELECT user_menu.id, user_menu.menu

@@ -3,6 +3,10 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
+                <div class="card-title">
+                    <h3 class="text-center mt-3 mb-3" style="font-family: Impact, Haettenschweiler, 'Arial Bold', sans-serif;">PROFIL SAYA</h3>
+                    <hr width="95%">
+                </div>
                 <div class="card-header">
                     <h3>Waktu :</h3>
                     <style>
@@ -61,11 +65,8 @@
                     </script>
                 </div>
                 <div class="card-body">
-                    <div class="card-title mr-5 ">
-                        <h3><b>My Profile</b></h3>
-                    </div>
                     <div class="card-tools ml-auto">
-                        <a href="<?= base_url(); ?>Profile/editprofile" class="btn btn-primary">Edit Profile</button></a>
+                        <a href="<?= base_url(); ?>Profile/editprofile" class="btn btn-warning" style="color:white;">Edit Profile</button></a>
                     </div>
                     <div class="row ml-5 mt-4">
                         <div class="col-md-4 mt-3">
