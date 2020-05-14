@@ -4,11 +4,14 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-title">
-                    <h3 class="text-center mt-3 mb-3" style="font-family: Impact, Haettenschweiler, 'Arial Bold', sans-serif;">PROFIL SAYA</h3>
+                    <h3 class="text-center mt-3 mb-3" style="font-family: Arial Black;">PROFIL SAYA</h3>
                     <hr width="95%">
                 </div>
                 <div class="card-header">
-                    <h3>Waktu :</h3>
+                    <div class="card-title mt-5">
+                        <a href="<?= base_url(); ?>Profile/editprofile" class="btn btn-warning" method="post" style="color:white;">Edit Profile</button></a>
+                    </div>
+
                     <style>
                         h1,
                         h2,
@@ -22,14 +25,14 @@
                             overflow: hidden;
                             width: 330px;
                             margin: 20px;
-                            border: 5px solid #efefef;
+                            border: 6px solid #efefef;
                         }
 
                         .kotak {
                             float: left;
                             width: 106px;
                             height: 100px;
-                            background-color: #189fff;
+                            background-color: #afc9cf;
                         }
 
                         .jam-digital-malasngoding p {
@@ -40,7 +43,7 @@
                         }
                     </style>
 
-                    <div class="jam-digital-malasngoding">
+                    <div class="jam-digital-malasngoding ml-auto">
                         <div class="kotak">
                             <p id="jam"></p>
                         </div>
@@ -65,11 +68,8 @@
                     </script>
                 </div>
                 <div class="card-body">
-                    <div class="card-tools ml-auto">
-                        <a href="<?= base_url(); ?>Profile/editprofile" class="btn btn-warning" style="color:white;">Edit Profile</button></a>
-                    </div>
                     <div class="row ml-5 mt-4">
-                        <div class="col-md-4 mt-3">
+                        <div class="img-responsive img-circle col-md-4 mt-3">
                             <img src="<?= base_url('assets/foto/') . $user['foto']; ?>" alt="Profil" style="max-width: 300px; max-height: 500px;">
                         </div>
                         <br>
@@ -105,7 +105,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3>Waktu :</h3>
+                    <div class=" card-title mt-5">
+                        <a href="<?php echo base_url("absen/masuk") ?>" class="btn btn-warning" style="color: white;">MASUK</a>
+                        <a href=" <?php echo base_url("absen/keluar") ?>" class="btn btn-info">PULANG</a>
+                    </div>
                     <style>
                         h1,
                         h2,
@@ -119,14 +122,14 @@
                             overflow: hidden;
                             width: 330px;
                             margin: 20px;
-                            border: 5px solid #efefef;
+                            border: 6px solid #efefef;
                         }
 
                         .kotak {
                             float: left;
                             width: 106px;
                             height: 100px;
-                            background-color: #189fff;
+                            background-color: #afc9cf;
                         }
 
                         .jam-digital-malasngoding p {
@@ -137,7 +140,7 @@
                         }
                     </style>
 
-                    <div class="jam-digital-malasngoding">
+                    <div class="jam-digital-malasngoding ml-auto">
                         <div class="kotak">
                             <p id="jam"></p>
                         </div>
@@ -160,53 +163,43 @@
                             document.getElementById("detik").innerHTML = waktu.getSeconds();
                         }
                     </script>
+                </div>
+            </div>
+        </div>
 
-                    <div class="card-tools ml-auto mr-3">
-                        <a href="<?php echo base_url("absen/masuk") ?>" class="btn btn-warning">MASUK</a>
-                        <a href="<?php echo base_url("absen/keluar") ?>" class="btn btn-info">PULANG</a>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <a href="<?= base_url(); ?>Profile/editprofile" class="btn btn-primary">Edit Profile</button></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="mt-3">
+                            <img src="<?= base_url('assets/foto/') . $user['foto']; ?>" alt="Profil" style="max-width: 300px; max-height: 500px;">
+                        </div>
+                        <br>
+                        <div class="col-md-8 mt-2">
+                            <dl>
+                                <dt>NIP</dt>
+                                <dd><?= $user['nip'] ?></dd>
+                                <dt>Nama</dt>
+                                <dd><?= $user['nama'] ?></dd>
+                                <dt>Jabatan</dt>
+                                <dd><?= $user['jabatan'] ?></dd>
+                                <dt>Tempat, Tanggal Lahir</dt>
+                                <dd><?= $user['ttl'] ?></dd>
+                                <dt>Jenis Kelamin</dt>
+                                <dd><?= $user['kelamin'] ?></dd>
+                                <dt>Alamat</dt>
+                                <dd><?= $user['alamat'] ?></dd>
+                                <dt>No. Telepon</dt>
+                                <dd><?= $user['telp'] ?></dd>
+                                <dt>Email</dt>
+                                <dd><?= $user['email'] ?></dd>
+                            </dl>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <a href="<?= base_url(); ?>Profile/editprofile" class="btn btn-primary">Edit Profile</button></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="card">
-        <div class="row ml-5 mt-4">
-            <div class="col-md-4 mt-3">
-                <img src="<?= base_url('assets/foto/') . $user['foto']; ?>" alt="Profil" style="max-width: 300px; max-height: 500px;">
-            </div>
-            <br>
-            <div class="col-md-8 mt-2">
-                <dl>
-                    <dt>NIP</dt>
-                    <dd><?= $user['nip'] ?></dd>
-                    <dt>Nama</dt>
-                    <dd><?= $user['nama'] ?></dd>
-                    <dt>Jabatan</dt>
-                    <dd><?= $user['jabatan'] ?></dd>
-                    <dt>Tempat, Tanggal Lahir</dt>
-                    <dd><?= $user['ttl'] ?></dd>
-                    <dt>Jenis Kelamin</dt>
-                    <dd><?= $user['kelamin'] ?></dd>
-                    <dt>Alamat</dt>
-                    <dd><?= $user['alamat'] ?></dd>
-                    <dt>No. Telepon</dt>
-                    <dd><?= $user['telp'] ?></dd>
-                    <dt>Email</dt>
-                    <dd><?= $user['email'] ?></dd>
-                </dl>
-            </div>
-        </div>
-    </div>
-<?php endif; ?>
+    <?php endif; ?>

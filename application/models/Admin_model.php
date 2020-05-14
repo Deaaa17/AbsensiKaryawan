@@ -87,9 +87,4 @@ class Admin_model extends CI_Model
     {
         return $this->db->delete($this->_table, array("id" => $id));
     }
-
-    // public function detail($id)
-    // {
-    //     return $this->db->detail($this->_table, array("id" => $id));
-    // }
 }

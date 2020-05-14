@@ -1,12 +1,13 @@
 <body class="hold-transition login-page">
 	<div class="login-box">
 		<div class="login-logo">
-			<a href="#"><b>Absensi</b>Karyawan</a>
+			<i class="fas fa-business-time"></i>
+			<a href="#" style="font-family: Futura Bk BT;"><b style="font-family: Swis721 Blk BT;">Absensi</b> Karyawan</a>
 		</div>
 		<!-- /.login-logo -->
 		<div class="card">
 			<div class="card-body login-card-body">
-				<h4 class="login-box-msg">MASUK</h4>
+				<h4 class="login-box-msg" style="font-family: Arial;">MASUK</h4>
 
 				<?= $this->session->flashdata('message'); ?>
 
@@ -32,19 +33,19 @@
 					<div class="row">
 						<!-- /.col -->
 						<div class="col-4">
-							<button type="submit" class="btn btn-primary btn-block">Masuk</button>
+							<button type="submit" class="btn btn-warning btn-block" style="font-family: Arial; color:white;">Masuk</button>
 						</div>
 						<!-- /.col -->
 					</div>
 				</form>
-
+				<hr>
 				<!-- /.social-auth-links -->
 
 				<div class="text-center">
-					<a href="<?= base_url('auth/forgot'); ?>" class="text-center">Lupa Password?</a>
+					<a href="<?= base_url('auth/forgot'); ?>" class="text-center" style="font-family: Arial;">Lupa Password ?</a>
 				</div>
 				<div class="text-center">
-					<a href="<?= base_url('auth/regis'); ?>" class="text-center">Belum punya akun?Buat akun</a>
+					<a href="<?= base_url('auth/regis'); ?>" class="text-center" style="font-family: Arial;">Belum punya akun? Buat akun</a>
 				</div>
 			</div>
 			<!-- /.login-card-body -->

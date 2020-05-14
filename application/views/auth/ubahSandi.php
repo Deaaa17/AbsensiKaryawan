@@ -1,12 +1,13 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="#"><b>Absensi</b> Karyawan</a>
+            <i class="fas fa-business-time"></i>
+            <a href="#" style="font-family: Futura Bk BT;"><b style="font-family: Swis721 Blk BT;">Absensi</b> Karyawan</a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <h5 class="login-box-msg">Buat Kata Sandi Baru untuk</h5>
+                <h5 class="login-box-msg" style="font-family: Arial;">Buat Kata Sandi Baru untuk</h5>
                 <h6><?= $this->session->set_userdata('reset_email'); ?></h6>
 
                 <?= $this->session->flashdata('message'); ?>
@@ -33,7 +34,7 @@
                     <div class="row">
                         <!-- /.col -->
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-block">Ubah Sandi</button>
+                            <button type="submit" class="btn btn-warning btn-block" style="font-family: Arial;">Ubah Sandi</button>
                         </div>
                         <!-- /.col -->
                     </div>
