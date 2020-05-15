@@ -39,7 +39,7 @@ class Profile extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function editprofile($id)
+    public function editprofile($id, $data)
     {
         $role_id = $this->session->userdata('role_id');
         checkLogin($role_id);
@@ -60,9 +60,6 @@ class Profile extends CI_Controller
         $this->form_validation->set_rules('name', 'Nama Lengkap', 'required|trim');
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/header', $menu);
-            $this->load->view('user/editprofile', $data);
-            $this->load->view('templates/footer');
         } else {
             $nama = $this->input->post('nama');
             $email = $this->input->post('email');
@@ -71,8 +68,13 @@ class Profile extends CI_Controller
             $this->db->where('email', $email);
             $this->db->update('user');
 
+            $this->Admin_model->save($data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Profil Telah diubah! Silahkan Masuk.</div>');
             redirect('user/profile');
         }
+
+        $this->load->view('templates/header', $menu);
+        $this->load->view('user/editprofile', $data);
+        $this->load->view('templates/footer');
     }
 }

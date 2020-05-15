@@ -9,7 +9,7 @@
                 </div>
                 <div class="card-header">
                     <div class="card-title mt-5">
-                        <a href="<?= base_url(); ?>Profile/editprofile" class="btn btn-warning" method="post" style="color:white;">Edit Profile</button></a>
+                        <a href="<?= base_url("profile/editprofile/" . $user['id']); ?>" class="btn btn-warning" method="post" style="color:white;">Edit Profile</button></a>
                     </div>
 
                     <style>

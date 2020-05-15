@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-6 ml-5">
-        <label>Data Karyawan</label>
+        <span>Data Karyawan</span>
         <h4><b>Tambah Data</b></h4>
         <br>
         <?php echo form_open_multipart('karyawan/insertdata'); ?>

@@ -295,11 +295,4 @@ class Karyawan extends CI_Controller
 
         redirect('karyawan/datakaryawan');
     }
-
-
-    // public function detail($id)
-    // {
-    //     $this->Admin_model->detail($id);
-    //     redirect('karyawan/datakaryawan');
-    // }
 }
