@@ -39,7 +39,7 @@ class Profile extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function editprofile($id, $data)
+    public function editprofile($id)
     {
         $role_id = $this->session->userdata('role_id');
         checkLogin($role_id);
