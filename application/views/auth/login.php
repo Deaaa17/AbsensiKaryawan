@@ -38,15 +38,7 @@
 						<!-- /.col -->
 					</div>
 				</form>
-				<hr>
 				<!-- /.social-auth-links -->
-
-				<div class="text-center">
-					<a href="<?= base_url('auth/forgot'); ?>" class="text-center" style="font-family: Arial;">Lupa Password ?</a>
-				</div>
-				<div class="text-center">
-					<a href="<?= base_url('auth/regis'); ?>" class="text-center" style="font-family: Arial;">Belum punya akun? Buat akun</a>
-				</div>
 			</div>
 			<!-- /.login-card-body -->
 		</div>

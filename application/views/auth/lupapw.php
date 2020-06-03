@@ -24,7 +24,7 @@
                     <div class="row">
                         <!-- /.col -->
                         <div class="text-center">
-                            <button type="submit" class="btn btn-warning btn-block" style="font-family: Arial;">Atur Ulang Kata Sandi</button>
+                            <button type="submit" class="btn btn-warning btn-block" style="font-family: Arial; color: white;">Atur Ulang Kata Sandi</button>
                         </div>
                         <!-- /.col -->
                     </div>

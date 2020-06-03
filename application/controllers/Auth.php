@@ -98,121 +98,21 @@ class Auth extends CI_Controller
         redirect('auth');
     }
 
-    private function _sendEmail($token, $type)
+    public function sandi()
     {
-        $config = [
-            'protocol' => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_user' => 'deamfaradilah17@gmail.com',
-            'smtp_pass' => '123456789',
-            'smtp_port' => 465,
-            'mailtype' => 'html',
-            'charset' => 'utf-8',
-            'newline' => "\r\n"
-        ];
-
-        $this->email->initialize($config);
-
-        $this->load->library('email', $config);
-        $this->email->from('deamfaradilah17@gmail.com', 'Dhea Maulida');
-        $this->email->to($this->input->post('email'));
-
-        if ($type == 'verify') {
-            $this->email->subject('Verifikasi Akun');
-            $this->email->message('Klik link ini untuk mengubah kata sandi : <a href="' . base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Aktivasi</a>');
-        } else if ($type == 'forgot') {
-            $this->email->subject('Atur Ulang Kata Sandi');
-            $this->email->message('Klik link ini untuk mengatur ulang kata sandi : <a href="' . base_url() . 'auth/resetsandi?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Atur Ulang Kata Sandi</a>');
-        }
-
-        if ($this->email->send()) {
-            return true;
-        } else {
-            echo $this->email->print_debugger();
-            die;
-        }
-    }
-
-    public function forgot()
-    {
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
-        if ($this->form_validation->run() == false) {
-            $data['title'] = 'Lupa Kata Sandi';
-            $this->load->view('templates/auth_header', $data);
-            $this->load->view('auth/lupapw');
-            $this->load->view('templates/auth_footer');
-        } else {
+        if ($this->input->post('lupa')) {
             $email = $this->input->post('email');
-            $user = $this->db->get_where('user', ['email' => $email, 'is_active' => 1])->row_array();
+            $que = $this->db->query("select pass,email from user_login where email='$email'");
+            $row = $que->row();
+            $user_email = $row->email;
+            if ((!strcmp($email, $user_email))) {
+                $pass = $row->pass;
 
-            if ($user) {
-                $token = base64_encode(random_bytes(32));
-                $user_token = [
-                    'email' => $email,
-                    'token' => $token,
-                    'date_created' => time()
-                ];
-
-                $this->db->insert('user_token', $user_token);
-                $this->_sendEmail($token, 'forgot');
-
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Cek Email Anda Untuk Setel Ulang Password</div>');
-                redirect('auth/forgot');
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email Belum Terdaftar atau Belum Teraktivasi</div>');
-                redirect('auth/forgot');
+                $to = $user_email;
+                $subject = "Password";
+                $txt = "Your pass is $pass .";
+                $headers = "From : ";
             }
-        }
-    }
-
-    public function resetsandi()
-    {
-        $email = $this->input->get('email');
-        $token = $this->input->get('token');
-
-        $user = $this->db->get_where('user', ['email' => $email])->row_array();
-
-        if ($user) {
-            $user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
-
-            if ($user_token) {
-                $this->session->set_userdata('reset_email', $email);
-                $this->ubahKatasandi();
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Token Salah</div>');
-                redirect('auth');
-            }
-        } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email Salah</div>');
-            redirect('auth');
-        }
-    }
-
-    public function ubahKatasandi()
-    {
-        if (!$this->session->userdata('reset_email')) {
-            redirect('auth');
-        }
-
-        $this->form_validation->set_rules('password1', 'Password', 'trim|required|min_length[3]|matches[password2]');
-        $this->form_validation->set_rules('password2', 'Repeat Password', 'trim|required|min_length[3]|matches[password1]');
-        if ($this->form_validation->run() == false) {
-            $data['title'] = 'Ubah Kata Sandi';
-            $this->load->view('templates/auth_header', $data);
-            $this->load->view('auth/ubahSandi');
-            $this->load->view('templates/auth_footer');
-        } else {
-            $password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
-            $email = $this->session->userdata('reset_email');
-
-            $this->db->set('passsword', $password);
-            $this->db->where('email', $email);
-            $this->db->update('user');
-
-            $this->session->unset_userdata('reset_email');
-
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Kata Sandi Telah diubah! Silahkan Masuk.</div>');
-            redirect('auth');
         }
     }
 }
