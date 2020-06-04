@@ -68,9 +68,9 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Absensi Karyawan | Registrasi';
-            $this->load->view('templates/auth_header', $data);
-            $this->load->view('auth/regist');
-            $this->load->view('templates/auth_footer');
+            $this->load->view('templates/header', $data);
+            $this->load->view('karyawan/create');
+            $this->load->view('templates/footer');
         } else {
             $data = [
                 'nama' => htmlspecialchars($this->input->post('name', true)),
