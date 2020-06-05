@@ -58,6 +58,21 @@ class Auth extends CI_Controller
 
     public function regis()
     {
+        // Get User menggunakan SESSION untuk Set Menu
+        $role_id = $this->session->userdata('role_id');
+        checkLogin($role_id);
+
+        $menu['title'] = 'My Profile';
+        $menu['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $queryMenu = "SELECT user_menu.id, user_menu.menu
+                        FROM user_menu JOIN user_access_menu 
+                            ON user_menu.id = user_access_menu.menu_id
+                        WHERE user_access_menu.role_id = $role_id
+                    ORDER BY user_menu.id ASC
+        ";
+        $menu['menu'] = $this->db->query($queryMenu)->result_array();
+
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
             'is_unique' => 'Email ini sudah terdaftar.'
@@ -67,15 +82,17 @@ class Auth extends CI_Controller
         ]);
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Absensi Karyawan | Registrasi';
-            $this->load->view('templates/header', $data);
+
+
+            $menu['title'] = 'Absensi Karyawan | Registrasi';
+            $this->load->view('templates/header', $menu);
             $this->load->view('karyawan/create');
             $this->load->view('templates/footer');
         } else {
             $data = [
                 'nama' => htmlspecialchars($this->input->post('name', true)),
                 'email' => htmlspecialchars($this->input->post('email', true)),
-                'gambar' => 'default.jpg',
+                'foto' => 'default.jpg',
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                 'role_id' => 2,
                 'is_active' => 1,
@@ -85,7 +102,7 @@ class Auth extends CI_Controller
             $this->db->insert('user', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Registrasi Berhasil! Silahkan Login</div>');
             $this->load->helper('url');
-            redirect('auth');
+            redirect('karyawan');
         }
     }
 

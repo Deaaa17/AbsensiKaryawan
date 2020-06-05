@@ -25,10 +25,27 @@
 						<input type="password" class="form-control" id="password" name="password" placeholder="Password">
 						<div class="input-group-append">
 							<div class="input-group-text">
-								<span class="fas fa-lock"></span>
+								<i id="icon" class="fa fa-eye-slash"></i>
 							</div>
 						</div>
 					</div>
+					<script>
+						var input = document.getElementById('password'),
+							icon = document.getElementById('icon');
+
+						icon.onclick = function() {
+
+							if (input.getAttribute("type") == 'password') {
+								input.setAttribute('type', 'text');
+								icon.className = 'fa fa-eye';
+							} else {
+								input.setAttribute('type', 'password');
+								icon.className = 'fa fa-eye-slash';
+							}
+
+						}
+					</script>
+
 					<?= form_error('password', '<small class="text-danger">'); ?></small>
 					<div class="row">
 						<!-- /.col -->

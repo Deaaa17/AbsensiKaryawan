@@ -48,10 +48,8 @@
             <input type="file" class="form-control-file" id="foto" name="foto">
         </div>
         <button type="submit" name="ubah" class="btn btn-primary">Simpan</button>
+        <a href="<?= base_url(); ?>profil" class="btn btn-info">Kembali</a>
         <?php echo form_close(); ?>
         <br>
-        <div>
-            <a href="<?= base_url('profile'); ?>"><i class="fas fa-long-arrow-alt-left"></i> Kembali</a>
-        </div>
     </div>
 </div>

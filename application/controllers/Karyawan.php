@@ -49,50 +49,6 @@ class Karyawan extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-
-    // public function add()
-    // {
-    //     $karyawan = $this->admin_model;
-    //     $validation = $this->form_validation;
-    //     $validation->set_rules($karyawan->rules());
-
-    //     if ($validation->run()) {
-    //         $karyawan->save();
-    //         $this->session->set_flashdata('success', 'Berhasil disimpan');
-    //     }
-
-    //     $this->load->view("admin/karyawan/new_form");
-    // }
-
-    // // GET /karyawan/edit/:id
-    // public function edit($id = null)
-    // {
-    //     if (!isset($id)) redirect('admin/data_karyawan');
-
-    //     $karyawan = $this->admin_model;
-    //     $validation = $this->form_validation;
-    //     $validation->set_rules($karyawan->rules());
-
-    //     if ($validation->run()) {
-    //         $karyawan->update();
-    //         $this->session->set_flashdata('success', 'Berhasil disimpan');
-    //     }
-
-    //     $data["karyawan"] = $karyawan->getById($id);
-    //     if (!$data["product"]) show_404();
-
-    //     $this->load->view("admin/karyawan/edit_form", $data);
-    // }
-
-    // public function delete($id = null)
-    // {
-    //     if (!isset($id)) show_404();
-
-    //     if ($this->admin_model->delete($id)) {
-    //         redirect(site_url('admin/data_karyawan'));
-    //     }
-    // }
-
     public function list()
     {
         $this->load->view("user/menu");

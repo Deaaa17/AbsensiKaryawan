@@ -39,14 +39,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-8">
-                    <div class="icheck-primary">
-                        <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-
-                    </div>
-                </div>
-            </div>
+            <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+            <a href="<?= base_url(); ?>karyawan/datakaryawan/" class="btn btn-info">Kembali</a>
         </form>
+
     </div>
 </div>

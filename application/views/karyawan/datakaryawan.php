@@ -43,6 +43,7 @@
                                 <td><img src="<?= base_url() ?>assets/foto/<?= $lk->foto ?>" alt="" width="60px" height="60px"></td>
                                 <!-- <td><a href="<?= base_url(); ?>karyawan/detail/" class="btn btn-success btn-sm">Detail</a></td> -->
                                 <td>
+                                    <a href="<?= base_url(); ?>karyawan/ubah/<?= $lk->id ?>" class="btn btn-warning btn-sm" style="color: white;"><i class="fas fa-key"></i></a>
                                     <a href="<?= base_url(); ?>karyawan/ubah/<?= $lk->id ?>" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
                                     <a href="<?= base_url(); ?>karyawan/hapus/<?= $lk->id ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin?');"><i class="fas fa-trash"></i></a>
                                 </td>
