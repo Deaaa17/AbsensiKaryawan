@@ -9,7 +9,7 @@
         <input type="hidden" name="fotolama" value="<?= $karyawan->foto; ?>">
         <div class="form-group">
             <label for="NIP">NIP</label>
-            <input type="text" class="form-control" id="NIP" name="nip" value="<?= $karyawan->nip; ?>" disabled>
+            <input type="text" class="form-control" id="NIP" name="nip" value="<?= $karyawan->nip; ?>">
         </div>
         <div class="form-group">
             <label for="Nama">Nama</label>
