@@ -104,10 +104,17 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
+                <div class="card-title">
+                    <h3 class="text-center mt-3 mb-3" style="font-family: Arial Black;">PROFIL SAYA</h3>
+                    <hr width="95%">
+                </div>
                 <div class="card-header">
-                    <div class=" card-title mt-5">
-                        <a href="<?php echo base_url("absen/masuk") ?>" class="btn btn-warning" style="color: white;">MASUK</a>
+                    <div class="card-title mt-3">
+                        <a href="<?php echo base_url("absen/masuk") ?>" class="btn btn-primary" style="color: white;">MASUK</a>
                         <a href=" <?php echo base_url("absen/keluar") ?>" class="btn btn-info">PULANG</a>
+                        <div class="mt-5">
+                            <a href="<?= base_url("profile/editprofile/") ?>" class="btn btn-warning" method="post" style="color:white;">Edit Profile</button></a>
+                        </div>
                     </div>
                     <style>
                         h1,
@@ -164,21 +171,14 @@
                         }
                     </script>
                 </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <a href="<?= base_url(); ?>Profile/editprofile" class="btn btn-primary">Edit Profile</button></a>
-                    </div>
-                    <div class="card-body">
-                        <div class="mt-3">
+                <div class="card-body">
+                    <div class="row ml-5 mt-4">
+                        <div class="img-responsive img-circle col-md-4 mt-3">
                             <img src="<?= base_url('assets/foto/') . $user['foto']; ?>" alt="Profil" style="max-width: 300px; max-height: 500px;">
                         </div>
                         <br>
-                        <div class="col-md-8 mt-2">
+                        <div class="col-md-8 mt-2 ml-auto">
                             <dl>
                                 <dt>NIP</dt>
                                 <dd><?= $user['nip'] ?></dd>
@@ -202,4 +202,5 @@
                 </div>
             </div>
         </div>
-    <?php endif; ?>
+    </div>
+<?php endif; ?>

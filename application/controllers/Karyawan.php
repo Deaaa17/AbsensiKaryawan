@@ -252,14 +252,11 @@ class Karyawan extends CI_Controller
         redirect('karyawan/datakaryawan');
     }
 
-    public function resetsandi()
+    public function resetsandi($id)
     {
-        if ($_POST) {
-
-            $this->input->post('email');
-            $passnew = random_string('alnum', 50);
-            $this->session->set_flashdata('sukses', 'Silahkan masukkan password baru anda dibawah ini <br>' . $passnew);
-            redirect('karyawan/datakaryawan');
-        }
+        $passnew = random_string('alnum', 50);
+        $this->db->update($id);
+        $this->session->set_flashdata('message', 'Silahkan masukkan password baru anda dibawah ini <br>' . $passnew);
+        redirect('karyawan/datakaryawan');
     }
 }
