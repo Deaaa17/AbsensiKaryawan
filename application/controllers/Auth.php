@@ -56,7 +56,7 @@ class Auth extends CI_Controller
         }
     }
 
-    public function regis()
+    public function create()
     {
         // Get User menggunakan SESSION untuk Set Menu
         $role_id = $this->session->userdata('role_id');

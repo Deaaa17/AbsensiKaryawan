@@ -1,7 +1,7 @@
 <?= $this->session->flashdata('message'); ?>
 
 <a href="<?= base_url(); ?>karyawan/insertdata/" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Tambah Data Karyawan</button></a>
-<a href="<?= base_url(); ?>auth/regis/" class="ml-auto btn btn-info mb-3"><i class="fas fa-plus"></i> Buat Akun</button></a>
+<a href="<?= base_url(); ?>auth/create/" class="ml-auto btn btn-info mb-3"><i class="fas fa-plus"></i> Buat Akun</button></a>
 
 <div class="row">
     <div class="col-12">
