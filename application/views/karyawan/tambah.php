@@ -16,10 +16,20 @@
             <label for="Nama">Email</label>
             <input type="text" class="form-control" id="Email" name="email" method="post" autocomplete="off">
         </div>
+
         <div class="form-group">
             <label for="jabatan">Jabatan</label>
-            <input type="text" class="form-control" id="jabatan" name="jabatan" method="post">
+            <select class="form-control" id="exampleFormControlSelect1" name="jabatan">
+                <option value="Laki-laki">Direktur</option>
+                <option value="Perempuan">Manager</option>
+                <option value="Perempuan">Assisten Manager</option>
+                <option value="Perempuan">Sekretaris</option>
+                <option value="Perempuan">Bendahara</option>
+                <option value="Perempuan">Administrator</option>
+                <option value="Perempuan">Office Boy</option>
+            </select>
         </div>
+
         <div class="form-group">
             <label for="notelp">No Telepon</label>
             <input type="text" class="form-control" id="notelp" name="notelp" method="post" autocomplete="off">

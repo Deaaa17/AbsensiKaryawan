@@ -69,7 +69,7 @@ class Profile extends CI_Controller
             $this->db->update('user');
 
             $this->Admin_model->save($data);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Profil Telah diubah! Silahkan Masuk.</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Profil Telah diubah!</div>');
             redirect('user/profile');
         }
 

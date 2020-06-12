@@ -3,7 +3,7 @@
         <span>Profil</span>
         <h4><b>Edit Profil</b></h4>
         <br>
-        <?php echo form_open_multipart('profile/editprofile'); ?>
+        <?php echo form_open_multipart('profile/editprofile/' . $profile->id); ?>
         <input type="hidden" name="idkaryawan" value="<?= $profile->id; ?>">
         <input type="hidden" name="fotolama" value="<?= $profile->foto; ?>">
         <div class="form-group">
@@ -22,10 +22,15 @@
             <label for="jabatan">Tempat, Tanggal Lahir</label>
             <input type="text" class="form-control" id="ttl" name="ttl" value="<?= $profile->ttl; ?>">
         </div>
+
         <div class="form-group">
-            <label for="jabatan">Jenis Kelamin</label>
-            <input type="text" class="form-control" id="kelamin" name="kelamin" value="<?= $profile->kelamin; ?>">
+            <label for="exampleFormControlSelect1">Jenis Kelamin</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="kelamin">
+                <option value="Laki-laki">Laki-laki</option>
+                <option value="Perempuan">Perempuan</option>
+            </select>
         </div>
+
         <div class="form-group">
             <label for="jabatan">Alamat</label>
             <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $profile->alamat; ?>">
@@ -48,7 +53,7 @@
             <input type="file" class="form-control-file" id="foto" name="foto">
         </div>
         <button type="submit" name="ubah" class="btn btn-primary">Simpan</button>
-        <a href="<?= base_url(); ?>profil" class="btn btn-info">Kembali</a>
+        <a href="<?= base_url(); ?>profile" class="btn btn-info">Kembali</a>
         <?php echo form_close(); ?>
         <br>
     </div>
