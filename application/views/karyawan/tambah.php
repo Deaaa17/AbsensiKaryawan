@@ -20,13 +20,13 @@
         <div class="form-group">
             <label for="jabatan">Jabatan</label>
             <select class="form-control" id="exampleFormControlSelect1" name="jabatan">
-                <option value="Laki-laki">Direktur</option>
-                <option value="Perempuan">Manager</option>
-                <option value="Perempuan">Assisten Manager</option>
-                <option value="Perempuan">Sekretaris</option>
-                <option value="Perempuan">Bendahara</option>
-                <option value="Perempuan">Administrator</option>
-                <option value="Perempuan">Office Boy</option>
+                <option value="Direktur">Direktur</option>
+                <option value="Manager">Manager</option>
+                <option value="Assisten Manager">Assisten Manager</option>
+                <option value="Sekretaris">Sekretaris</option>
+                <option value="Bendahara">Bendahara</option>
+                <option value="Administrator">Administrator</option>
+                <option value="Office Boy">Office Boy</option>
             </select>
         </div>
 

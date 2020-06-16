@@ -259,4 +259,24 @@ class Karyawan extends CI_Controller
         $this->session->set_flashdata('message', 'Silahkan masukkan password baru anda dibawah ini <br>' . $passnew);
         redirect('karyawan/datakaryawan');
     }
+
+    public function pdf()
+    {
+        $this->load->library('dompdf_gen');
+
+        $data["list_karyawan"] = $this->Admin_model->getAll();
+
+        $this->load->view('karyawan/pdfkaryawan', $data);
+
+        $paper_size = 'A4';
+        $orientation = 'landscape';
+        $html = $this->output->get_output();
+        $this->dompdf->set_paper($paper_size, $orientation);
+
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("Laporan Data Absensi", array('Attachment' => 0));
+
+        redirect('karyawan/datakaryawan');
+    }
 }
