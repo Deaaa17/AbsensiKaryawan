@@ -5,7 +5,7 @@
 
     <h3 style="text-align: center">DATA ABSENSI KARYAWAN</h3>
     <br>
-    <table>
+    <table  border="1" width="100%">
         <tr>
             <th>NIP</th>
             <th>Nama</th>

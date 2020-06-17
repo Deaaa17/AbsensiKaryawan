@@ -58,6 +58,8 @@ class Admin_model extends CI_Model
 
     public function search($keyword)
     {
+        $this->db->select('*');
+        $this->db->from('user');
         $this->db->like('nip', $keyword);
         $this->db->or_like('nama', $keyword);
         $this->db->or_like('ttl', $keyword);

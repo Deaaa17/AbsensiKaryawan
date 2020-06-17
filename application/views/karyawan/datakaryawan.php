@@ -11,12 +11,12 @@
                 <a href="<?= base_url(); ?>karyawan/pdf/" class="btn btn-warning" style="color: white;"><i class="fas fa-file-pdf"></i> Export PDF</button></a>
                 <div class="card-tools">
                     <?php $attributes = array('class' => 'input-group input-group-sm', 'method' => 'get'); ?>
-                    <?php echo form_open("karyawan", $attributes); ?>
-                    <div class="input-group-append">
-                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search" autocomplete="off">
-                        <button type="submit" name="search" class="btn btn-default"><i class="fas fa-search"></i></button>
-                    </div>
-                    <?php echo form_close(); ?>
+                    <form action="<?= base_url('karyawan/search') ?>" method="POST">
+                        <div class="input-group-append">
+                            <input type="text" name="table_search" class="form-control float-right" placeholder="Cari..." autocomplete="off">
+                            <button type="submit" name="search" class="btn btn-default"><i class="fas fa-search"></i></button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="card-body">
@@ -42,7 +42,6 @@
                                 <td><?= $lk->jabatan ?></td>
                                 <td><?= $lk->telp ?></td>
                                 <td><img src="<?= base_url() ?>assets/foto/<?= $lk->foto ?>" alt="" width="60px" height="60px"></td>
-                                <!-- <td><a href="<?= base_url(); ?>karyawan/detail/" class="btn btn-success btn-sm">Detail</a></td> -->
                                 <td>
                                     <a href="<?= base_url(); ?>karyawan/resetsandi/" class="btn btn-warning btn-sm" style="color: white;"><i class="fas fa-key"></i></a>
                                     <a href="<?= base_url(); ?>karyawan/ubah/<?= $lk->id ?>" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>

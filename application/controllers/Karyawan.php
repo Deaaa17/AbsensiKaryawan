@@ -109,6 +109,13 @@ class Karyawan extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function search()
+    {
+        $keyword = $this->input->post('keyword');
+        $data['karyawan'] = $this->Admin_model->search($keyword);
+        $this->load->view('karyawan/datakaryawan', $data);
+    }
+
     public function hapus($id)
     {
         $this->Admin_model->delete($id);
