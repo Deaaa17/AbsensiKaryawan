@@ -171,6 +171,6 @@ class Absen extends CI_Controller
         $sampai = $this->input->get('sampai');
         $data["list_absen"] = $this->Absensi->ListAbsensi($dari, $sampai);
 
-        $this->load->view('karyawan/printdata', $data);
+        $this->load->view('karyawan/printabsen', $data);
     }
 }

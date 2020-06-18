@@ -113,7 +113,12 @@ class Karyawan extends CI_Controller
     {
         $keyword = $this->input->post('keyword');
         $data['karyawan'] = $this->Admin_model->search($keyword);
+        if ($this->input->post('keyword')) {
+            $data['karyawan'] = $this->Admin_model->search();
+        }
+        $this->load->view('templates/header');
         $this->load->view('karyawan/datakaryawan', $data);
+        $this->load->view('templates/footer');
     }
 
     public function hapus($id)
@@ -285,5 +290,12 @@ class Karyawan extends CI_Controller
         $this->dompdf->stream("Laporan Data Absensi", array('Attachment' => 0));
 
         redirect('karyawan/datakaryawan');
+    }
+
+    public function print()
+    {
+        $data["list_karyawan"] = $this->Admin_model->getAll();
+
+        $this->load->view('karyawan/printdata', $data);
     }
 }

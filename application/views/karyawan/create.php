@@ -47,6 +47,7 @@
                 }
             </script>
             <?= form_error('password1', '<small class="text-danger">'); ?></small>
+
             <div class="input-group mb-3">
                 <input type="password" class="form-control" id="password2" name="password2" placeholder="Ulang password">
                 <div class="input-group-append">
@@ -71,9 +72,9 @@
 
                 }
             </script>
+
             <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
             <a href="<?= base_url(); ?>karyawan/datakaryawan/" class="btn btn-info">Kembali</a>
         </form>
-
     </div>
 </div>

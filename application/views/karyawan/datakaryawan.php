@@ -7,10 +7,11 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
+                <a href="<?= base_url(); ?>karyawan/print/" class="btn btn-primary"><i class="fas fa-print"></i> Print</button></a>
                 <a href="<?= base_url(); ?>karyawan/excel/" class="btn btn-success"><i class="fas fa-file-excel"></i> Export Excel</button></a>
                 <a href="<?= base_url(); ?>karyawan/pdf/" class="btn btn-warning" style="color: white;"><i class="fas fa-file-pdf"></i> Export PDF</button></a>
                 <div class="card-tools">
-                    <?php $attributes = array('class' => 'input-group input-group-sm', 'method' => 'get'); ?>
+                    <!-- <?php $attributes = array('class' => 'input-group input-group-sm', 'method' => 'get'); ?> -->
                     <form action="<?= base_url('karyawan/search') ?>" method="POST">
                         <div class="input-group-append">
                             <input type="text" name="table_search" class="form-control float-right" placeholder="Cari..." autocomplete="off">
@@ -29,7 +30,6 @@
                             <th>Jabatan</th>
                             <th>No. Telp</th>
                             <th>Foto</th>
-                            <!-- <th>Detail</th> -->
                             <th>Aksi</th>
                         </tr>
                     </thead>
