@@ -7,7 +7,7 @@
 		<!-- /.login-logo -->
 		<div class="card">
 			<div class="card-body login-card-body">
-				<h4 class="login-box-msg" style="font-family: Arial;">MASUK</h4>
+				<h4 class="login-box-msg" style="font-family: Swis721 Blk BT;">MASUK</h4>
 
 				<?= $this->session->flashdata('message'); ?>
 

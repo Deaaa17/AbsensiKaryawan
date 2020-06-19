@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-lg-6 ml-5">
+    <div class="col-lg-6 ml-5 mb-3">
         <span>Data Karyawan</span>
         <h4><b>Tambah Data</b></h4>
         <br>
@@ -16,20 +16,10 @@
             <label for="Nama">Email</label>
             <input type="text" class="form-control" id="Email" name="email" method="post" autocomplete="off">
         </div>
-
         <div class="form-group">
             <label for="jabatan">Jabatan</label>
-            <select class="form-control" id="exampleFormControlSelect1" name="jabatan">
-                <option value="Direktur">Direktur</option>
-                <option value="Manager">Manager</option>
-                <option value="Assisten Manager">Assisten Manager</option>
-                <option value="Sekretaris">Sekretaris</option>
-                <option value="Bendahara">Bendahara</option>
-                <option value="Administrator">Administrator</option>
-                <option value="Office Boy">Office Boy</option>
-            </select>
+            <input type="text" class="form-control" id="jabatan" name="email" method="post">
         </div>
-
         <div class="form-group">
             <label for="notelp">No Telepon</label>
             <input type="text" class="form-control" id="notelp" name="notelp" method="post" autocomplete="off">

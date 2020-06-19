@@ -14,7 +14,7 @@
                     <!-- <?php $attributes = array('class' => 'input-group input-group-sm', 'method' => 'get'); ?> -->
                     <form action="<?= base_url('karyawan/search') ?>" method="POST">
                         <div class="input-group-append">
-                            <input type="text" name="table_search" class="form-control float-right" placeholder="Cari..." autocomplete="off">
+                            <input type="text" name="keyword" class="form-control float-right" placeholder="Cari..." autocomplete="off">
                             <button type="submit" name="search" class="btn btn-default"><i class="fas fa-search"></i></button>
                         </div>
                     </form>

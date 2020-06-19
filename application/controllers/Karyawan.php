@@ -86,9 +86,7 @@ class Karyawan extends CI_Controller
 
         $this->form_validation->set_rules($this->Admin_model->rules());
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->load->view('karyawan/tambah');
-        } else {
+        if ($this->form_validation->run()) {
             $data = array(
 
                 'nip'       => $nip,
@@ -111,12 +109,25 @@ class Karyawan extends CI_Controller
 
     public function search()
     {
+        // Get User menggunakan SESSION untuk Set Menu
+        $role_id = $this->session->userdata('role_id');
+        checkLogin($role_id);
+
+        $menu['title'] = 'My Profile';
+        $menu['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $queryMenu = "SELECT user_menu.id, user_menu.menu
+                        FROM user_menu JOIN user_access_menu 
+                            ON user_menu.id = user_access_menu.menu_id
+                        WHERE user_access_menu.role_id = $role_id
+                    ORDER BY user_menu.id ASC
+        ";
+        $menu['menu'] = $this->db->query($queryMenu)->result_array();
+
         $keyword = $this->input->post('keyword');
-        $data['karyawan'] = $this->Admin_model->search($keyword);
-        if ($this->input->post('keyword')) {
-            $data['karyawan'] = $this->Admin_model->search();
-        }
-        $this->load->view('templates/header');
+        $data['list_karyawan'] = $this->Admin_model->search($keyword);
+
+        $this->load->view('templates/header', $menu);
         $this->load->view('karyawan/datakaryawan', $data);
         $this->load->view('templates/footer');
     }
