@@ -28,7 +28,7 @@
             <label for="foto">Foto</label>
             <input type="file" class="form-control-file" id="foto" name="foto">
         </div>
-        <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+        <button type="submit" name="simpan" class="btn btn-primary" value="upload">Simpan</button>
         <a href="<?= base_url(); ?>karyawan/datakaryawan/" class="btn btn-info">Kembali</a>
         <?php echo form_close(); ?>
     </div>
